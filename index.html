@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#9be000"><link rel="apple-touch-icon" href="icon-192.png">
+<title>Steady: calm, clear, common sense</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&display=swap">
+<style>
+:root{--bg:#fff;--card:#f7f9f4;--ink:#4b545a;--soft:#6b747b;--accent:#3f7d00;--lime:#9be000;--limeink:#1d2a05;--pink:#d9167a;--pinkink:#fff;--line:#dfe5d8;--note:#f0f8dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121618;--card:#1a2023;--ink:#cfd5d9;--soft:#98a2a8;--accent:#b6f03a;--lime:#b6f03a;--limeink:#11190a;--pink:#ff5fb0;--pinkink:#2a0016;--line:#2c353a;--note:#1f2a14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121618;--card:#1a2023;--ink:#cfd5d9;--soft:#98a2a8;--accent:#b6f03a;--lime:#b6f03a;--limeink:#11190a;--pink:#ff5fb0;--pinkink:#2a0016;--line:#2c353a;--note:#1f2a14;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.6 "Aviner GT Pro","Avenir Next",Avenir,"Nunito Sans",Verdana,sans-serif;border-top:8px solid var(--lime)}
+main{max-width:640px;margin:0 auto;padding:26px 20px 64px}
+h1,h2{font-weight:800;letter-spacing:-.01em}
+h1{font-size:2.2rem;line-height:1.15;margin:.3em 0 .45em}
+h2{font-size:1.35rem;margin:1.6em 0 .4em;color:var(--accent)}
+p{margin:.6em 0}
+.soft{color:var(--soft);font-size:.88rem}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:var(--accent)}
+.brand svg{width:30px;height:30px}
+button.opt,button.main{display:block;width:100%;text-align:left;font:inherit;font-size:1.05rem;padding:16px 18px;margin:12px 0;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.opt:hover,button.opt:focus{border-color:var(--pink);outline:none}
+button.main{background:var(--lime);color:var(--limeink);border-color:var(--lime);text-align:center;font-weight:700;border-radius:99px}
+.plan.on{border-color:var(--lime);background:var(--note)}
+.bar{height:8px;background:var(--line);border-radius:4px;margin:20px 0 24px}
+.bar i{display:block;height:100%;background:var(--lime);border-radius:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 20px 16px;margin:20px 0}
+.note{background:var(--note);border-left:6px solid var(--lime);border-radius:6px 16px 16px 6px;padding:12px 18px;margin:20px 0}
+ol,ul{padding-left:1.2em}li{margin:.5em 0}
+input[type=email],input[type=text],select{width:100%;font:inherit;font-size:1.05rem;padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);margin:8px 0}
+.tags span{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;padding:3px 12px;border-radius:99px;margin:0 6px 6px 0}
+.t1{background:var(--lime);color:var(--limeink)}
+.t2{border:2px solid var(--pink);color:var(--pink)}
+.t3{border:2px dashed var(--soft);color:var(--soft)}
+h1::after{content:"";display:block;width:56px;height:6px;border-radius:3px;background:var(--pink);margin-top:12px}.badge{display:inline-block;background:var(--pink);color:var(--pinkink);font-size:.7rem;font-weight:800;letter-spacing:.06em;padding:2px 10px;border-radius:99px;margin-left:6px;vertical-align:middle}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px;margin:10px 0}summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.2em 0 .2em}.chk label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:1rem;cursor:pointer}.chk input{width:24px;height:24px;margin-top:2px;accent-color:#6fb800;flex:none}
+label.f{display:block;margin:14px 0;font-size:.95rem;color:var(--soft)}select{margin-top:6px}.tags{margin:.4em 0}
+.back{background:none;border:0;color:var(--accent);font:inherit;font-size:.95rem;cursor:pointer;padding:0;margin-bottom:10px;text-decoration:underline}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+var Q=[
+{k:"why",t:"What brings you here today?",o:[["fake","I want to know what is real and true vs fake news"],["report","I want to know if a report I saw is based on factual information"],["unusual","What should we do if we see something unusual?"],["safe","How do we find out if we are safe?"],["plan","How do we plan to ensure our family’s safety if unusual things happen?"]]},
+{k:"feel",t:"How are you feeling right now?",o:[["calm","Calm"],["uneasy","A little uneasy"],["anxious","Anxious"],["skeptical","Skeptical or irritated"],["unsure","Uncertain of the truth"]]},
+{k:"want",t:"What would help you most?",o:[["real","Is any of this real?"],["expect","What should I expect?"],["tell","What do I tell my family?"],["calmdown","How do I stay calm?"],["do","What should I actually do?"]]}
+];
+var OPEN={
+calm:"You’re starting from a steady place, and that’s worth protecting. Nothing here asks you to change how you live.",
+uneasy:"Feeling a little uneasy about unfamiliar news is normal. It doesn’t mean something is wrong with you, and it doesn’t mean something is wrong with the world.",
+anxious:"Anxiety about big, unclear news is common, and it’s a human reaction rather than a sign of weakness. You don’t have to fix it all today. Let’s take it one small step at a time.",
+skeptical:"Healthy skepticism is a good instinct here. This guide doesn’t ask you to believe anything. It asks you to stay level-headed whatever the headlines say.",
+unsure:"Not knowing what to believe is an honest and sensible place to be. Much of what’s out there is unverified, so it’s wise to hold your judgment until the evidence is in. This guide separates what is confirmed from what is only claimed."
+};
+var KNOW={
+real:"Here is what can honestly be said. Governments and researchers have discussed unexplained sightings, and some of that is on the public record. As far as we know, nobody has produced verified proof of life beyond Earth. Many claims are loud and few are verified. Sorting those apart is exactly what Steady’s weekly update does.",
+expect:"Realistically, big institutions, markets and daily routines change slowly. Even a major announcement would be followed by weeks and months of discussion, checking and debate, not an overnight upheaval. Your bills, your job and your community will still be there tomorrow.",
+tell:"Keep it simple and honest: “There’s a lot of news and a lot of noise. Nothing about our day-to-day life has changed. We’ll stay informed from reliable sources and keep looking after each other.” Children mostly need calm tone, routine and the sense that a trusted adult is in charge.",
+calmdown:"Calm is a skill and a few minutes of practice builds it. Try the grounding exercise below. Then limit how often you check the news, because repeated scrolling feeds worry far more than it informs.",
+do:"The best actions are ordinary ones, and they work for any kind of disruption or unsettling news. They are listed below. None of them require buying anything or changing your beliefs."
+};
+var ACTS=[
+"Keep your routine. Meals, sleep, work, prayer or reflection, time outdoors. Routine is the strongest anchor you have.",
+"Choose two or three reliable sources and check them once or twice a day, not all day. Skip anything that uses panic words or urgent countdowns.",
+"Before you share a claim, ask: who said it, what evidence did they offer, and has anyone independent confirmed it? If you can’t answer, don’t pass it on.",
+"Stay connected. Talk to a neighbor, family member or friend. Worries shrink when they’re spoken aloud.",
+"Do the basics you’d do for any disruption: some water, a few days of food, a torch, and your important documents in one place. Sensible, not extreme.",
+"Be wary of anyone selling fear: survival kits, “secret briefings,” or paid warnings. Scammers thrive on anxious moments."
+];
+var GROUND="<ol><li>Sit comfortably and put both feet on the floor.</li><li>Breathe in through your nose for 4 counts, and out slowly for 6. Repeat 5 times.</li><li>Name 5 things you can see, 4 you can hear, 3 you can touch.</li><li>Ask yourself: “What is one useful thing I can do in the next hour?” Then do it.</li></ol>";
+var FAM="<p>If someone close to you is struggling, listen first and don’t argue with the feeling. Say: “That sounds unsettling. Do you want to go through what’s actually known together?” Keep your voice steady, keep the routine going, and avoid feeding the news cycle in front of them.</p>";
+var WHY={
+fake:["Real and true versus fake","A claim is more trustworthy when you can answer yes to these. Is a named person or organization behind it? Is the evidence shown, not just described? Has someone independent confirmed it? Is it recent, and is the photo or video from when and where it says? Be careful with anything that rushes you, uses urgent or fearful wording, or says “they don’t want you to know.” Steady’s weekly update labels each claim Confirmed, Claimed or Speculation, so you don’t have to do this alone."],
+report:["Checking a report you saw","Start with the original source, not the headline or the share. Ask: What exactly was claimed, and by whom? What evidence was offered? Did anyone independent confirm it? Does an official or primary document exist, and does it really say what the report says? A report can be accurate and still be misread, so check what it actually states. If you can’t find answers, treat it as unverified."],
+unusual:["If you see something unusual","Most unusual sights have ordinary explanations, such as aircraft, drones, satellites, planets, balloons, weather or reflections. Stay calm and keep a safe distance. Note the time, place and direction, and take photos or video from where you are. Don’t approach, touch or move anything unfamiliar on the ground. If anyone is in danger, call your local emergency number. Otherwise, report it to the relevant local authority and talk it through with someone you trust."],
+safe:["How to find out if we are safe","For any emergency, trust official channels: your local emergency services, disaster management office and national broadcaster. As far as we know, no credible authority has issued a public safety warning connected to this subject. If that ever changed, it would come through official channels rather than social media or forwarded messages. Until then, the most useful steps are the ordinary ones below."],
+plan:["Planning for your family’s safety","Treat this like any other unusual event and use one simple family plan. Talk together calmly about what you would do. Agree on a meeting place and a way to reach each other. Keep a short list of key phone numbers and your important documents in one place. Keep some water, food, a torch and any medicines. Decide who checks on elderly or vulnerable relatives. Agree which two or three sources you will trust for information."]
+};
+var READY="<ul><li><b>Water:</b> store about 4 litres per person per day (2 to drink, 2 for cooking and washing) in clean, lidded bottles. Aim for 3 days, then build up.</li><li><b>Food:</b> add one or two extra items each time you shop, such as rice, pasta, tinned food and oil. Choose what you already eat and use the oldest first.</li><li><b>Power and light:</b> torches or lanterns, a charged power bank and a battery radio.</li><li><b>Fuel:</b> keep your car at least half full. Don’t store large amounts of fuel at home.</li><li><b>Cooking safely:</b> never use charcoal, braai coals or a gas heater in a closed room.</li><li><b>Money and papers:</b> a little cash in small notes, and copies of key documents in a waterproof bag.</li></ul><p class=\"soft\">No big budget needed. A little each shop beats a big, expensive stockpile, and panic buying makes shortages worse for everyone.</p>";
+var EV=[
+["Phones go down","Try a text, keep calls short, and don’t keep redialling. Go to your agreed meeting place or stay put, as planned. Use your paper contact list and agreed check-in times. Set up a street “runner” to carry messages and check on elderly neighbours."],
+["TV goes down","Switch to a battery or wind-up radio, or your car radio. Choose one trusted person to collect official news and share it at set times, which stops rumours. Keep routines going, and have books, cards and games ready."],
+["Internet goes down","Keep a printed copy of your plan, contact list and key documents, plus a little cash. Use the radio for information. Don’t forward unverified messages when the internet returns, and help neighbours who rely on it."],
+["Electricity goes off","Unplug sensitive appliances and keep the fridge and freezer closed. Use torches rather than candles. Cook only in well-ventilated places, and never use charcoal or generators indoors. Check on elderly and ill neighbours, especially in extreme heat or cold."],
+["Running water stops","Fill containers as soon as pressure drops. Plan for about 4 litres per person per day and ration from the start. Wash hands with a little water in a jug, flush with a bucket of used water, and boil unsafe water for at least one minute. Help elderly neighbours carry water."]
+];
+var CHK={act:["Agree a family meeting place for an unusual event, and a second one.", "Decide together whether to stay put or go to the meeting place if phones and internet go down.", "Write key phone numbers on paper, including a contact person outside your area.", "Find out which neighbour has a walkie-talkie, radio or solar charger.", "Find your water shut-off valve, and learn how to open gates and garage doors by hand.", "Fill clean lidded containers with drinking water: about 4 litres per person per day, for 3 days.", "Choose a long-drop spot in the garden: about 1 metre deep, at least 30 metres from any well, borehole or stream, and check for buried pipes first.", "Put copies of IDs and key documents in a waterproof bag.", "Agree who will check on elderly or vulnerable neighbours.", "Read your plan aloud together, and review it every 6 months."],buy:["Transistor radio (solar or battery) and spare batteries", "Solar charger or charged power bank", "Walkie-talkies (one per road or community is enough)", "Torches or lanterns, and spare batteries", "Water containers with lids, and purification tablets", "Tubing, gutters or a barrel to collect rain water", "First aid kit, and spare regular medication where possible", "Gas or camping stove and gas (use only in well-ventilated places)", "Extra tinned and dry food, one or two items each shop, and a manual tin opener", "A little cash in small notes"]};
+function chkHtml(){var n=0,h='<p>Start with the activities, which cost little or nothing. Buy items a little at a time, and don’t panic-buy.</p><p class="soft" id="cnt">0 of '+(CHK.act.length+CHK.buy.length)+' done</p><h3>Activities</h3><div class="chk">';CHK.act.forEach(function(t){h+='<label><input type="checkbox"> <span>'+t+'</span></label>'});h+='</div><h3>Things to buy, a little at a time</h3><div class="chk">';CHK.buy.forEach(function(t){h+='<label><input type="checkbox"> <span>'+t+'</span></label>'});return h+'</div>'}
+var a={},step=0,app=document.getElementById("app");
+function esc(s){return s}
+function head(){return '<div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 19h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 5v14" stroke="var(--pink)" stroke-width="2.5" stroke-linecap="round"/></svg>Steady</div>'}
+function intro(){
+app.innerHTML=head()+'<h1>Calm, clear, common sense.</h1><p>Whatever the headlines bring, you can stay steady. Answer three short questions and we’ll build you a simple plan. It takes about a minute, and there’s no hype and no panic here.</p><button class="main" id="go">Begin</button><button class="opt" id="ck">Check a news story or source</button><p class="soft">Free. No sign-up needed to see your plan.</p>';
+document.getElementById("go").onclick=function(){step=0;ask()};document.getElementById("ck").onclick=checker;
+}
+function ask(){
+var q=Q[step];
+var h=head()+'<div class="bar"><i style="width:'+((step+1)/Q.length*100)+'%"></i></div>';
+if(step>0)h+='<button class="back" id="bk">← Back</button>';
+h+='<h1>'+q.t+'</h1>';
+q.o.forEach(function(o){h+='<button class="opt" data-v="'+o[0]+'">'+o[1]+'</button>'});
+app.innerHTML=h;
+if(step>0)document.getElementById("bk").onclick=function(){step--;ask()};
+Array.prototype.forEach.call(app.querySelectorAll(".opt"),function(b){b.onclick=function(){a[q.k]=b.getAttribute("data-v");step++;if(step<Q.length)ask();else plan()}});
+window.scrollTo(0,0);
+}
+function plan(){
+var h=head()+'<h1>Your free summary</h1><p>'+OPEN[a.feel]+'</p>';
+h+='<h2>'+WHY[a.why][0]+'</h2><p>'+WHY[a.why][1]+'</p>';if(a.why==="fake"||a.why==="report")h+='<button class="main" id="tochk">Check a source now</button>';
+h+='<h2>What to know</h2><p>'+KNOW[a.want]+'</p>';
+h+='<div class="note"><p><b>Three simple actions for this week</b></p><ol>';
+var pick=[0,1,2];
+if(a.feel==="anxious"||a.want==="calmdown")pick=[0,3,1];
+if(a.want==="do")pick=[0,4,5];
+if(a.why==="fake"||a.why==="report"||a.feel==="skeptical"||a.feel==="unsure")pick=[1,2,5];
+if(a.why==="plan"||a.why==="safe")pick=[0,3,4];
+pick.forEach(function(i){h+='<li>'+ACTS[i]+'</li>'});
+h+='</ol></div>';
+if(a.why==="plan"||a.why==="safe"||a.why==="unusual"||a.want==="do")h+='<h2>Your emergency checklist</h2>'+chkHtml();
+if(a.why==="plan"||a.why==="safe"||a.why==="unusual"||a.want==="do"){h+='<h2>In the event of…</h2><p>Write one short statement for your family or group for each of these, so everyone knows what to do. Tap one to see how.</p>';EV.forEach(function(e){h+='<details><summary>'+e[0]+'</summary><p>'+e[1]+'</p></details>'})}
+if(a.feel==="anxious"||a.feel==="uneasy"||a.want==="calmdown")h+='<h2>A two-minute grounding exercise</h2>'+GROUND;
+if(a.why==="plan"||a.want==="tell")h+='<h2>Helping someone close to you</h2>'+FAM;
+h+='<h2>Staying informed without the noise</h2><p>Each week, Steady sorts the news into three clear labels so you always know what you’re reading:</p><p class="tags"><span class="t1">CONFIRMED</span><span class="t2">CLAIMED</span><span class="t3">SPECULATION</span></p><p>It also covers hoaxes and scams debunked that week.</p>';
+h+='<div class="card"><h2>Get your plan by email</h2><p>We’ll send your plan and a free sample of the weekly update.</p><input type="email" id="em" placeholder="you@example.com" aria-label="Email address"><button class="main" id="sub">Send me my plan</button><p class="soft" id="msg">The weekly update will be a small monthly subscription. Cancel any time with one click. We never sell your details.</p></div>';
+h+='<div class="card"><h2>Get the full report</h2><p>This page is your free summary. The full report goes deeper, and every week it sorts the news into confirmed, claimed and speculation, with the hoaxes we debunked. Your first issue is free.</p><button class="opt plan on" data-p="f"><b>Founding member: $5 a month</b> <span class="badge">FIRST 100</span><br><span class="soft">Price locked for life. First 100 readers.</span></button><button class="opt plan" data-p="m"><b>$6 a month</b><br><span class="soft">Cancel any time with one click.</span></button><button class="opt plan" data-p="y"><b>$60 a year</b><br><span class="soft">Two months free.</span></button><button class="main" id="pay">Continue</button><p class="soft" id="pm">Secure payment by PayPal.</p></div>';
+h+='<p class="soft">Steady offers general information only. It is not medical or mental health care. If worry is affecting your sleep, work or relationships, please speak to a doctor or counsellor. If you feel unsafe, contact your local emergency number.</p><button class="back" id="re">Start again</button>';
+app.innerHTML=h;
+document.getElementById("re").onclick=function(){a={};intro()};
+document.getElementById("sub").onclick=function(){var v=document.getElementById("em").value;document.getElementById("msg").textContent=/\S+@\S+\.\S+/.test(v)?"Thank you. This is a prototype, so nothing was saved or sent yet.":"Please enter a valid email address."};
+Array.prototype.forEach.call(app.querySelectorAll(".plan"),function(b){b.onclick=function(){Array.prototype.forEach.call(app.querySelectorAll(".plan"),function(x){x.classList.remove("on")});b.classList.add("on")}});
+if(document.getElementById("tochk"))document.getElementById("tochk").onclick=checker;
+Array.prototype.forEach.call(app.querySelectorAll(".chk input"),function(c){c.onchange=function(){var all=app.querySelectorAll(".chk input"),d=app.querySelectorAll(".chk input:checked").length;document.getElementById("cnt").textContent=d+" of "+all.length+" done"}});
+document.getElementById("pay").onclick=function(){document.getElementById("pm").textContent="This is a prototype, so payments aren’t switched on yet. Your PayPal button will go here."};
+window.scrollTo(0,0);
+}
+var QS=["Is a real, named author shown, and can you find them elsewhere?","Does it link to original evidence, such as a document, study or official statement?","Are other reputable outlets reporting the same thing?","Is the headline calm and factual, not written to make you angry or scared?","Does the site have an About page showing who owns it, and a corrections policy?","Are the date, photos and videos from when and where the story says?","Does it name specific people and organizations, instead of “experts say”?","Does it avoid pressing you to share, buy or act urgently?"];
+function enc(x){return encodeURIComponent(x)}
+function val(i){return document.getElementById(i).value.trim()}
+function hostOf(u){try{if(!u)return "";if(!/^https?:\/\//i.test(u))u="https://"+u;return new URL(u).hostname.replace(/^www\./,"")}catch(e){return ""}}
+function L(t,u){return '<li><a href="'+u+'" target="_blank" rel="noopener noreferrer">'+t+'</a></li>'}
+function checker(){
+var h=head()+'<button class="back" id="bk">← Back</button><h1>Check a source</h1><p>Fill in what you know. Everything is optional, and nothing is sent anywhere until you tap a lookup link.</p><label class="f">Link to the article<input type="text" id="cu" placeholder="https://…"></label><label class="f">Headline or claim<input type="text" id="cc"></label><label class="f">Author<input type="text" id="ca"></label><label class="f">Website or outlet name<input type="text" id="co"></label><h2>Ask yourself</h2>';
+QS.forEach(function(q,i){h+='<label class="f">'+q+'<select id="q'+i+'"><option value="">Not sure</option><option value="y">Yes</option><option value="n">No</option></select></label>'});
+h+='<button class="main" id="rs">Show my results</button><div id="out"></div>';
+app.innerHTML=h;window.scrollTo(0,0);
+document.getElementById("bk").onclick=intro;
+document.getElementById("rs").onclick=function(){
+var u=val("cu"),c=val("cc"),au=val("ca"),o=val("co"),hs=hostOf(u),nm=o||hs,y=0,n=0,i,v,fl=[];
+for(i=0;i<QS.length;i++){v=document.getElementById("q"+i).value;if(v==="y")y++;if(v==="n")n++}
+if(/^http:\/\//i.test(u))fl.push("The link isn’t secure (http). That is not proof of a problem, but be careful with any site that asks for your details.");
+if(/^(bit\.ly|t\.co|tinyurl\.com|goo\.gl|ow\.ly|is\.gd)$/.test(hs))fl.push("This is a shortened link, which hides the real website. Find the full address before you trust it.");
+if(/\.com\.co$/.test(hs))fl.push("The address ends in .com.co, a pattern often used to imitate real outlets.");
+if(hs&&(hs.split("-").length>3))fl.push("The website name is long and full of hyphens, which is common on throw-away sites.");
+var lab,cls,msg;
+if(y+n<4){lab="ANSWER A FEW MORE";cls="t3";msg="Answer at least four of the questions to get a useful result."}
+else if(n>=3){lab="TREAT AS UNVERIFIED";cls="t3";msg="Several warning signs. Don’t share this until you have confirmed it with a source you trust."}
+else if(y>=6&&n===0){lab="LOOKS WELL SUPPORTED";cls="t1";msg="Most checks are positive. Still confirm the key claim with one independent source."}
+else{lab="MIXED, CHECK MORE";cls="t2";msg="Some checks are positive and some aren’t clear. Use the lookups below before you rely on it or share it."}
+var o2='<h2>Your result</h2><p class="tags"><span class="'+cls+'">'+lab+'</span></p><p>'+msg+'</p>';
+if(u){o2+='<h3>About the link</h3><ul>';(fl.length?fl:["No obvious warning signs in the link itself. That doesn’t make it reliable."]).forEach(function(f){o2+='<li>'+f+'</li>'});o2+='</ul>'}
+o2+='<h3>One-tap lookups</h3><ul>';
+if(nm)o2+=L("Who owns this outlet, and what is its track record?","https://duckduckgo.com/?q="+enc(nm+" ownership credibility corrections"));
+if(au)o2+=L("Who is this author? Are they a real journalist?","https://duckduckgo.com/?q="+enc(au+" journalist author"))+L("Look the author up on Wikipedia","https://en.wikipedia.org/w/index.php?search="+enc(au));
+if(c)o2+=L("Is anyone else reporting this? Check reputable outlets","https://duckduckgo.com/?q="+enc(c))+L("Search Africa Check","https://www.google.com/search?q="+enc("site:africacheck.org "+c))+L("Search Snopes","https://www.google.com/search?q="+enc("site:snopes.com "+c))+L("Search PolitiFact","https://www.google.com/search?q="+enc("site:politifact.com "+c))+L("Search Full Fact","https://www.google.com/search?q="+enc("site:fullfact.org "+c));
+if(hs)o2+=L("When was the website registered, and by whom?","https://who.is/whois/"+enc(hs))+L("See older versions of the page","https://web.archive.org/web/*/"+u);
+o2+=L("Check a photo with Google Lens","https://lens.google.com/")+L("Check a photo with TinEye","https://tineye.com/")+'</ul>';
+o2+='<div class="note"><p>Credibility isn’t a simple yes or no. Look for a track record, named sources, corrections and independent confirmation. This tool is a guide to your own checking, not a ruling on any person or outlet. Steady’s own reviewed source profiles are coming soon.</p></div>';
+document.getElementById("out").innerHTML=o2;document.getElementById("out").scrollIntoView()}}
+
+intro();
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+</script>
+</body>
+</html>
